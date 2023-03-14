@@ -16,7 +16,7 @@ public class MonsterData : MonoBehaviour
 
     public MonsterLevel CurrentLevel
     {
-        get { return CurrentLevel; }
+        get { return currentLevel; }
 
         set
         {
