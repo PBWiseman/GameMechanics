@@ -27,6 +27,22 @@ public class MoveEnemy : MonoBehaviour
         float currentTimeOnPath = Time.time - lastWaypointSwitchTime;
         gameObject.transform.position = Vector2.Lerp (startPosition, endPosition, currentTimeOnPath / totalTimeForPath);
 
-        
+        if (gameObject.transform.position.Equals(endPosition))
+        {
+            if (currentWaypoint < waypoints.Length - 2)
+            {
+                currentWaypoint++;
+                lastWaypointSwitchTime = Time.time;
+                //TODO: Rotate into move direction
+            }
+            else
+            {
+                Destroy(gameObject);
+
+                AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+                AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+                //TODO: deduct health
+            }
+        }
     }
 }
